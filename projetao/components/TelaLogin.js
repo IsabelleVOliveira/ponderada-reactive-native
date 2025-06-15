@@ -9,6 +9,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
+
 const API_URL = 'http://192.168.1.110:8000';
 
 export default function TelaLogin({ navigation }) {
@@ -34,10 +35,10 @@ export default function TelaLogin({ navigation }) {
       const data = await response.json();
 
       if (response.ok) {
-        Alert.alert('Sucesso', 'OTP enviado com sucesso! Verifique seu email.');
+        Alert.alert('Sucesso', 'Código de verificação enviado com sucesso! Verifique seu email.');
         setShowOtpInput(true);
       } else {
-        Alert.alert('Erro', data.detail || 'Erro ao enviar OTP');
+        Alert.alert('Erro', data.detail || 'Erro ao enviar o código de verificação');
       }
     } catch (error) {
       Alert.alert('Erro', 'Erro ao conectar com o servidor');
@@ -46,7 +47,7 @@ export default function TelaLogin({ navigation }) {
 
   const verifyOTP = async () => {
     if (!otp) {
-      Alert.alert('Erro', 'Por favor, insira o código OTP');
+      Alert.alert('Erro', 'Por favor, insira o código de verificação');
       return;
     }
 
@@ -63,9 +64,9 @@ export default function TelaLogin({ navigation }) {
 
       if (response.ok) {
         Alert.alert('Sucesso', 'Login realizado com sucesso!');
-        navigation.navigate('Home');
+        navigation.navigate('TelaPrincipal');
       } else {
-        Alert.alert('Erro', data.detail || 'OTP inválido ou expirado');
+        Alert.alert('Erro', data.detail || 'Código de verificação inválido ou expirado');
       }
     } catch (error) {
       Alert.alert('Erro', 'Erro ao conectar com o servidor');
@@ -75,7 +76,7 @@ export default function TelaLogin({ navigation }) {
   return (
     <ScrollView contentContainerStyle={styles.scrollContent}>
       <View style={styles.container}>
-        <Text style={styles.title}>Login com OTP</Text>
+        <Text style={styles.title}>Login</Text>
         
         {!showOtpInput ? (
           <View style={styles.form}>
@@ -92,7 +93,7 @@ export default function TelaLogin({ navigation }) {
               style={styles.button}
               onPress={sendOTP}
             >
-              <Text style={styles.buttonText}>Enviar OTP</Text>
+              <Text style={styles.buttonText}>Enviar Código</Text>
             </TouchableOpacity>
             <TouchableOpacity 
               style={[styles.button, styles.secondaryButton]}
@@ -103,12 +104,12 @@ export default function TelaLogin({ navigation }) {
           </View>
         ) : (
           <View style={styles.form}>
-            <Text style={styles.label}>Código OTP:</Text>
+            <Text style={styles.label}>Código de Verificação:</Text>
             <TextInput
               style={styles.input}
               value={otp}
               onChangeText={setOtp}
-              placeholder="Digite o código OTP"
+              placeholder="Digite o código de verificação"
               keyboardType="number-pad"
               maxLength={6}
             />
@@ -116,7 +117,7 @@ export default function TelaLogin({ navigation }) {
               style={styles.button}
               onPress={verifyOTP}
             >
-              <Text style={styles.buttonText}>Verificar OTP</Text>
+              <Text style={styles.buttonText}>Verificar Código</Text>
             </TouchableOpacity>
             <TouchableOpacity 
               style={[styles.button, styles.secondaryButton]}

@@ -34,7 +34,7 @@ export default function TelaCadastro({ navigation }) {
 
       if (response.ok) {
         Alert.alert('Sucesso', 'Cadastro realizado com sucesso!');
-        navigation.navigate('Login');
+        navigation.navigate('TelaPrincipal');
       } else {
         Alert.alert('Erro', data.detail || 'Erro ao realizar cadastro');
       }
