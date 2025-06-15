@@ -15,6 +15,7 @@ import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 import { Ionicons } from '@expo/vector-icons';
 import Header from './Header';
+import Footer from './Footer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const PAGE_SIZE = 100;
@@ -158,11 +159,15 @@ const App = () => {
     }
   };
 
+  const handleImageSelected = (uri) => {
+    setImagemSelecionada(uri);
+    setModalVisivel(true);
+  };
+
   /* ---------- UI ---------- */
   return (
     <View style={styles.container}>
       <Header />
-
       <FlatList
         data={items}
         keyExtractor={item => item.id.toString()}
@@ -207,22 +212,10 @@ const App = () => {
         ListFooterComponent={
           loadingMore ? <ActivityIndicator size="large" /> : null
         }
+        contentContainerStyle={styles.listContent}
       />
 
-      {/* Botões flutuantes */}
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.floatingButton}
-          onPress={abrirGaleria}>
-          <Ionicons name="images" size={24} color="#fff" />
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[styles.floatingButton, { backgroundColor: '#2563eb' }]}
-          onPress={abrirCamera}>
-          <Ionicons name="camera" size={28} color="#fff" />
-        </TouchableOpacity>
-      </View>
+      <Footer onImageSelected={handleImageSelected} />
 
       {/* Modal */}
       {modalVisivel && (
@@ -279,8 +272,11 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 40,
     backgroundColor: '#f5f5f5',
+  },
+  listContent: {
+    paddingTop: 90, // Espaço para o Header
+    paddingBottom: 80, // Espaço para o Footer
   },
   card: {
     backgroundColor: '#fff',
@@ -295,22 +291,6 @@ const styles = StyleSheet.create({
   ingredients: { fontStyle: 'italic' },
   rating: { marginTop: 4, color: '#f59e0b' },
   price: { fontWeight: 'bold', marginTop: 6, color: '#2b8a3e' },
-  buttonContainer: {
-    position: 'absolute',
-    bottom: 20,
-    right: 20,
-    alignItems: 'center',
-    gap: 16,
-  },
-  floatingButton: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: '#9333ea',
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 5,
-  },
   modalOverlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(0,0,0,0.5)',

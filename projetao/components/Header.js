@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <View style={styles.header}>
       <View style={styles.headerContent}>
-        <Ionicons name="restaurant" size={24} color="#ff69b4" />
+        <Ionicons name="restaurant" size={34} color="#ff69b4" />
         <Text style={styles.title}>Receitas de Família</Text>
       </View>
     </View>
@@ -15,11 +15,17 @@ export default function Header() {
 
 const styles = StyleSheet.create({
   header: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
     backgroundColor: 'white',
     padding: 15,
+    paddingTop: 60,
     borderBottomWidth: 1,
     borderBottomColor: '#f0f0f0',
     elevation: 2,
+    zIndex: 1,
   },
   headerContent: {
     flexDirection: 'row',
@@ -27,7 +33,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   title: {
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: 'bold',
     color: '#ff69b4',
   },
