@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 
-const API_URL = 'http://192.168.1.110:8000';
+const API_URL = 'http://192.168.15.53:8000';
 
 export default function TelaLogin({ navigation }) {
   const [email, setEmail] = useState('');
