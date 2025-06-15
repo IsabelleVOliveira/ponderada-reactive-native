@@ -1,1 +1,10 @@
-[]
+{
+  "teste@exemplo.com": {
+    "name": "Usuario Teste",
+    "registered_at": "2025-06-15T15:31:05.316318"
+  },
+  "bebelle342@gmail.com": {
+    "name": "belle",
+    "last_login": "2025-06-15T19:00:54.752443"
+  }
+}
