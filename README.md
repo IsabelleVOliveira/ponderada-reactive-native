@@ -2,6 +2,8 @@
 
 Este é um sistema de login que utiliza autenticação de dois fatores (2FA) através de OTP (One-Time Password) enviado por email, desenvolvido em React Native.
 
+Vídeo de demostração do app: https://drive.google.com/file/d/1DZRct51LKzTfP2zShXVIAA7wvjIDHU38/view?usp=sharing
+
 ## Requisitos
 
 - Python 3.7+ (para o backend)
